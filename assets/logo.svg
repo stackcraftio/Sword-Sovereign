@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 64" width="300" height="64" role="img" aria-label="stackcraftio">
+  <rect x="1" y="1" width="298" height="62" rx="8" fill="#0d1117" stroke="#30363d" stroke-width="2"/>
+  <path d="M30 14 H20 V50 H30" fill="none" stroke="#f0f0f0" stroke-width="2.5" stroke-linecap="square"/>
+  <path d="M270 14 H280 V50 H270" fill="none" stroke="#f0f0f0" stroke-width="2.5" stroke-linecap="square"/>
+  <text x="152" y="40" text-anchor="middle" font-family="ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,'Courier New',monospace" font-size="22" font-weight="600" fill="#f0f0f0" letter-spacing="5">stackcraftio</text>
+</svg>

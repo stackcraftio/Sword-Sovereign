@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sword Sovereign — 万剑归宗</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Sword Sovereign (万剑归宗): command thousands of flying swords with your hands, using your webcam. Built by stackcraftio.">
+<meta name="author" content="stackcraftio">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="gl"></canvas>
+<div id="bgmark"><span>stackcraftio</span></div>
+<div class="vignette"></div>
+<div id="flash"></div>
+<div id="wm">stackcraftio</div>
+
+<div id="hud">
+  <div class="title"><span class="zh">万剑归宗</span><span class="en">Sword Sovereign</span></div>
+  <div id="gname" class="gname">Sword Orbit</div>
+  <div id="gzh" class="gzh">环剑</div>
+  <div id="status" class="status"></div>
+  <div class="stats"><span id="fps">-- fps</span> · <span id="ncount">0</span> swords</div>
+</div>
+
+<div id="legend">
+  <button class="card" data-form="1"><div class="ic">✋</div><div><b>Open palm</b><span>Sword Summoning</span></div><kbd>2</kbd></button>
+  <button class="card" data-form="2"><div class="ic">✊</div><div><b>Closed fist</b><span>Defensive Formation</span></div><kbd>3</kbd></button>
+  <button class="card" data-form="3"><div class="ic">☝️</div><div><b>Point</b><span>Sword Launch</span></div><kbd>4</kbd></button>
+  <button class="card" data-form="4"><div class="ic">👌</div><div><b>Pinch</b><span>Precision Control</span></div><kbd>5</kbd></button>
+  <button class="card" data-form="5"><div class="ic">✌️</div><div><b>Peace sign</b><span>Rain of Swords</span></div><kbd>6</kbd></button>
+  <button class="card" data-form="6"><div class="ic">🙌</div><div><b>Both palms, close</b><span>Spiral Vortex</span></div><kbd>7</kbd></button>
+  <button class="card" data-form="7"><div class="ic">🙆</div><div><b>Both palms, wide</b><span>Ten Thousand Swords</span></div><kbd>8</kbd></button>
+  <button class="card" data-form="0"><div class="ic">◌</div><div><b>No hand</b><span>Sword Orbit</span></div><kbd>1</kbd></button>
+</div>
+
+<div id="side">
+  <div id="cam"><video id="vid" playsinline muted></video><canvas id="ov"></canvas></div>
+  <button id="panelToggle" title="Settings">⚙</button>
+  <div id="panelBody" class="glass">
+    <label><span class="lh"><span>Swords</span><b id="cntLabel">1500</b></span><input id="cnt" type="range" min="1" max="4" step="0.01" value="3.176"></label>
+    <label><span class="lh"><span>Sword size</span><b id="sizeLabel">1.0×</b></span><input id="size" type="range" min="0.5" max="2" step="0.05" value="1"></label>
+    <label>Sword colour / aura
+      <select id="theme">
+        <option value="azure">Azure Frost</option><option value="crimson">Crimson Flame</option>
+        <option value="jade">Jade Spirit</option><option value="gold">Imperial Gold</option>
+        <option value="violet">Violet Thunder</option><option value="rainbow">Rainbow (colour-shifting)</option>
+      </select></label>
+    <label>Environment
+      <select id="env">
+        <option value="midnight">Midnight Sky</option><option value="dawn">Twilight Peaks</option>
+        <option value="abyss">Abyssal Sea</option><option value="ember">Ember Heaven</option><option value="void">Pure Void</option>
+      </select></label>
+    <label>Control mode
+      <select id="mode"><option value="adv">Advanced (all gestures)</option><option value="beg">Beginner (palm · fist · point · two hands)</option></select></label>
+    <div class="toggles">
+      <label><input type="checkbox" id="optTrails" checked> Trails</label>
+      <label id="optBloomRow"><input type="checkbox" id="optBloom" checked> Bloom glow</label>
+      <label><input type="checkbox" id="optCircle" checked> Summoning circle</label>
+      <label><input type="checkbox" id="optParticles" checked> Energy particles</label>
+      <label><input type="checkbox" id="optSound" checked> Sound</label>
+      <label><input type="checkbox" id="optCam" checked> Camera preview</label>
+    </div>
+  </div>
+</div>
+
+<div id="intro">
+  <div class="introbox">
+    <h1>万剑归宗</h1>
+    <h2>Sword Sovereign</h2>
+    <p>Become a sword cultivator. Summon blades, raise a shield of steel, launch a volley, rain swords from the heavens — and spread both hands to command the Ten Thousand Swords.</p>
+    <div class="btns">
+      <button class="btn" id="btnCam">Enable camera &amp; begin</button>
+      <button class="btn ghost" id="btnMouse">Play without camera</button>
+    </div>
+    <p class="hint">Stand about an arm's length from the webcam in good light. Video never leaves your computer.<br>No camera? Use the mouse, keys 1–8, or click the gesture cards.</p>
+    <div class="motto">One hand summons a sword. Two hands command ten thousand.</div>
+    <img class="intrologo" src="assets/logo.svg" alt="Made by stackcraftio">
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1646424915/hands.js" crossorigin="anonymous"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
