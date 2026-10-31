@@ -3,12 +3,11 @@
 <p align="center"><em>Ten Thousand Swords Return to One</em></p>
 <p align="center"><strong>One hand summons a sword. Two hands command ten thousand.</strong></p>
 
-<p align="center" [**✧ 万剑归宗 ✧**](https://stackcraftio.github.io/Sword-Sovereign/)
-
 A gesture-controlled 3D fantasy simulation inspired by xianxia and wuxia. Stand in front of your webcam and command thousands of glowing flying swords with your bare hands. It runs entirely in the browser, with no installs, no backend and no build step.
 
 > This is a virtual visual simulation. It is not a physical drone or weapon-control system.
 
+> [**✧ 万剑归宗 ✧**](https://stackcraftio.github.io/Sword-Sovereign/) 
 Built by **stackcraftio**.
 
 ---
