@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="assets/logo.svg" alt="stackcraftio" width="260">
-</p>
 
 <h1 align="center">⚔️ Sword Sovereign — 万剑归宗</h1>
 <p align="center"><em>Ten Thousand Swords Return to One</em></p>
@@ -45,4 +42,4 @@ Keys `1`–`8` also work while the camera is on and override hand control. Press
 
 [MIT](LICENSE) © 2026 stackcraftio
 
-<p align="center"><img src="assets/logo.svg" alt="stackcraftio" width="160"></p>
+<p align="center"><img src="assets/logo.png" alt="stackcraftio" width="160"></p>
