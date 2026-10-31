@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" rx="12" fill="#0d1117"/>
-  <path d="M20 14 H11 V50 H20" fill="none" stroke="#f0f0f0" stroke-width="4" stroke-linecap="square"/>
-  <path d="M44 14 H53 V50 H44" fill="none" stroke="#f0f0f0" stroke-width="4" stroke-linecap="square"/>
-  <text x="32" y="43" text-anchor="middle" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="30" font-weight="700" fill="#f0f0f0">s</text>
-</svg>
